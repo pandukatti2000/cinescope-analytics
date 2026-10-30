@@ -1,64 +1,42 @@
+# CineScope Analytics
 
-
-\# CineScope Analytics
-
-
-
-\### AI-Powered Movie Rental Business Intelligence Assistant
-
-
+### AI-Powered Movie Rental Business Intelligence Assistant
 
 CineScope Analytics is a full-stack, AI-powered analytics application that allows users to explore a PostgreSQL movie rental database using natural-language questions.
 
-
-
 Instead of writing SQL manually, users can ask business questions about revenue, customers, films, and rental activity. The application generates PostgreSQL queries, validates and executes them, and presents the results as natural-language explanations, interactive charts, and downloadable tables.
 
+The application combines **LangGraph, LangChain, OpenAI, FastAPI, PostgreSQL, and Streamlit**.
 
+> **Project status:** Completed local-development portfolio project. The application runs locally and requires PostgreSQL and an OpenAI API key.
 
-The application combines \*\*LangGraph, LangChain, OpenAI, FastAPI, PostgreSQL, and Streamlit\*\*.
+## Key Features
 
+- **Natural-language analytics:** Ask business questions without writing SQL.
 
+- **AI-generated SQL:** Convert questions into PostgreSQL SELECT queries using an OpenAI language model.
 
-> \*\*Project status:\*\* Completed local-development portfolio project. The application runs locally and requires PostgreSQL and an OpenAI API key.
+- **LangGraph workflow:** Coordinate SQL generation, execution, and answer generation through a three-node graph.
 
+- **SQL safety controls:** Validate queries using SQLGlot, restrict SQL operations, and execute within read-only PostgreSQL transactions.
 
+- **Persistent conversation memory:** Store conversation checkpoints in a separate PostgreSQL database.
 
-\## Key Features
+- **Context-aware follow-ups:** Ask questions that reference previous conversation turns.
 
+- **Saved conversations:** Resume previously saved conversations from the Streamlit sidebar.
 
+- **Business KPI dashboard:** Display revenue, rentals, customers, and films using live PostgreSQL data.
 
-\- \*\*Natural-language analytics:\*\* Ask business questions without writing SQL.
+- **Interactive visualizations:** Automatically generate suitable Plotly bar and line charts.
 
-\- \*\*AI-generated SQL:\*\* Convert questions into PostgreSQL SELECT queries using an OpenAI language model.
+- **Transparent results:** Inspect generated SQL, view detailed tables, and export results as CSV.
 
-\- \*\*LangGraph workflow:\*\* Coordinate SQL generation, execution, and answer generation through a three-node graph.
+- **REST API:** Access analytics and conversation history through FastAPI.
 
-\- \*\*SQL safety controls:\*\* Validate queries using SQLGlot, restrict SQL operations, and execute within read-only PostgreSQL transactions.
-
-\- \*\*Persistent conversation memory:\*\* Store conversation checkpoints in a separate PostgreSQL database.
-
-\- \*\*Context-aware follow-ups:\*\* Ask questions that reference previous conversation turns.
-
-\- \*\*Saved conversations:\*\* Resume previously saved conversations from the Streamlit sidebar.
-
-\- \*\*Business KPI dashboard:\*\* Display revenue, rentals, customers, and films using live PostgreSQL data.
-
-\- \*\*Interactive visualizations:\*\* Automatically generate suitable Plotly bar and line charts.
-
-\- \*\*Transparent results:\*\* Inspect generated SQL, view detailed tables, and export results as CSV.
-
-\- \*\*REST API:\*\* Access analytics and conversation history through FastAPI.
-
-
-
-\## Dataset Overview
-
-
+## Dataset Overview
 
 The project uses a PostgreSQL implementation of the Sakila movie rental dataset.
-
-
 
 | Metric | Value |
 
@@ -76,19 +54,11 @@ The project uses a PostgreSQL implementation of the Sakila movie rental dataset.
 
 | Database tables | 16 |
 
-
-
 Revenue is calculated from `payment.amount`, not from film rental rates. The dataset does not establish a currency, so revenue is displayed without a currency symbol.
-
-
 
 The database contains information about films, actors, categories, inventory, rentals, customers, payments, stores, and staff.
 
-
-
-\## Technology Stack
-
-
+## Technology Stack
 
 | Layer | Technology |
 
@@ -120,189 +90,159 @@ The database contains information about films, actors, categories, inventory, re
 
 | Development and diagnostics | Python test scripts, LangGraph Studio, LangSmith |
 
-
-
-\## System Architecture
-
-
+## System Architecture
 
 ```text
 
-&#x20;                 User
+                  User
 
-&#x20;                  |
+                   |
 
-&#x20;                  v
+                   v
 
-&#x20;         Streamlit Frontend
+          Streamlit Frontend
 
-&#x20;         - KPI dashboard
+          - KPI dashboard
 
-&#x20;         - Analytics questions
+          - Analytics questions
 
-&#x20;         - Saved conversations
+          - Saved conversations
 
-&#x20;         - Charts and CSV export
+          - Charts and CSV export
 
-&#x20;                  |
+                   |
 
-&#x20;                  v
+                   v
 
-&#x20;             FastAPI
+              FastAPI
 
-&#x20;                  |
+                   |
 
-&#x20;                  v
+                   v
 
-&#x20;          LangGraph Workflow
+           LangGraph Workflow
 
-&#x20;                  |
+                   |
 
-&#x20;                  v
+                   v
 
-&#x20;           Generate SQL
+            Generate SQL
 
-&#x20;         - Database schema
+          - Database schema
 
-&#x20;         - Business rules
+          - Business rules
 
-&#x20;         - Conversation context
+          - Conversation context
 
-&#x20;         - OpenAI language model
+          - OpenAI language model
 
-&#x20;                  |
+                   |
 
-&#x20;                  v
+                   v
 
-&#x20;        Validate and Execute
+         Validate and Execute
 
-&#x20;         - SQLGlot validation
+          - SQLGlot validation
 
-&#x20;         - SELECT-only queries
+          - SELECT-only queries
 
-&#x20;         - Table restrictions
+          - Table restrictions
 
-&#x20;         - Read-only transaction
+          - Read-only transaction
 
-&#x20;         - Query timeout
+          - Query timeout
 
-&#x20;         - Result row limit
+          - Result row limit
 
-&#x20;                  |
+                   |
 
-&#x20;                  v
+                   v
 
-&#x20;        PostgreSQL Analytics DB
+         PostgreSQL Analytics DB
 
-&#x20;                  |
+                   |
 
-&#x20;                  v
+                   v
 
-&#x20;          Generate AI Answer
+           Generate AI Answer
 
-&#x20;                  |
+                   |
 
-&#x20;                  v
+                   v
 
-&#x20;            API Response
+             API Response
 
-&#x20;                  |
+                   |
 
-&#x20;                  v
+                   v
 
-&#x20;         Streamlit Results
+          Streamlit Results
 
-&#x20;         - Explanation
+          - Explanation
 
-&#x20;         - SQL query
+          - SQL query
 
-&#x20;         - Data table
+          - Data table
 
-&#x20;         - Interactive chart
+          - Interactive chart
 
-&#x20;         - CSV download
+          - CSV download
 
+      Separate PostgreSQL Database
 
+          LangGraph Checkpoints
 
-&#x20;     Separate PostgreSQL Database
+          - Conversation history
 
-&#x20;         LangGraph Checkpoints
+          - Thread persistence
 
-&#x20;         - Conversation history
-
-&#x20;         - Thread persistence
-
-&#x20;         - Follow-up context
+          - Follow-up context
 
 ```
 
-
-
-\## How the AI Workflow Works
-
-
+## How the AI Workflow Works
 
 The LangGraph workflow contains three sequential nodes:
 
+1. **Generate SQL:** The application provides the language model with PostgreSQL schema metadata, business rules, the current question, and recent conversation context. The model generates a SQL query.
 
+2. **Execute SQL:** The generated query is validated using SQLGlot and executed against the PostgreSQL analytics database with read-only transaction protections.
 
-1\. \*\*Generate SQL:\*\* The application provides the language model with PostgreSQL schema metadata, business rules, the current question, and recent conversation context. The model generates a SQL query.
-
-2\. \*\*Execute SQL:\*\* The generated query is validated using SQLGlot and executed against the PostgreSQL analytics database with read-only transaction protections.
-
-3\. \*\*Generate Answer:\*\* The language model receives the original question, SQL query, and database results, then produces a natural-language explanation.
-
-
+3. **Generate Answer:** The language model receives the original question, SQL query, and database results, then produces a natural-language explanation.
 
 The workflow uses LangGraph's shared state to pass data between nodes.
 
+For conversations, a `thread_id` identifies the active thread. PostgreSQL checkpoints allow the application to recover saved messages and continue follow-up questions after a restart.
 
-
-For conversations, a `thread\_id` identifies the active thread. PostgreSQL checkpoints allow the application to recover saved messages and continue follow-up questions after a restart.
-
-
-
-\## SQL Validation and Data Safety
-
-
+## SQL Validation and Data Safety
 
 AI-generated SQL is treated as untrusted input.
 
-
-
 The application implements several safeguards:
 
+- Accepts a single SELECT statement.
 
+- Rejects database-modifying SQL operations.
 
-\- Accepts a single SELECT statement.
+- Rejects row-locking clauses.
 
-\- Rejects database-modifying SQL operations.
+- Restricts access to permitted tables in the public schema.
 
-\- Rejects row-locking clauses.
+- Uses an allowlist of supported SQL functions.
 
-\- Restricts access to permitted tables in the public schema.
+- Applies a maximum result limit of 100 rows.
 
-\- Uses an allowlist of supported SQL functions.
+- Executes queries in PostgreSQL read-only transactions.
 
-\- Applies a maximum result limit of 100 rows.
+- Applies a 5-second database statement timeout.
 
-\- Executes queries in PostgreSQL read-only transactions.
+- Rolls back the transaction after execution.
 
-\- Applies a 5-second database statement timeout.
-
-\- Rolls back the transaction after execution.
-
-\- Uses a dedicated read-only analytics database account.
-
-
+- Uses a dedicated read-only analytics database account.
 
 These controls provide multiple layers of protection, but they are not a substitute for database-level permissions and a comprehensive production security review.
 
-
-
-\## Project Structure
-
-
+## Project Structure
 
 ```text
 
@@ -330,7 +270,7 @@ CineScope-Analytics/
 
 |   |-- core/
 
-|   |   |-- business\_rules.py
+|   |   |-- business_rules.py
 
 |   |   `-- config.py
 
@@ -352,13 +292,13 @@ CineScope-Analytics/
 
 |   |-- llm/
 
-|   |   |-- answer\_generator.py
+|   |   |-- answer_generator.py
 
 |   |   |-- client.py
 
 |   |   |-- prompts.py
 
-|   |   `-- sql\_generator.py
+|   |   `-- sql_generator.py
 
 |   |
 
@@ -374,7 +314,7 @@ CineScope-Analytics/
 
 |   |-- charts.py
 
-|   `-- streamlit\_app.py
+|   `-- streamlit_app.py
 
 |
 
@@ -382,21 +322,19 @@ CineScope-Analytics/
 
 |   `-- SQL/
 
-|       |-- sakila\_schema.sql
+|       |-- sakila_schema.sql
 
-|       `-- sakila\_data.sql
+|       `-- sakila_data.sql
 
 |
 
 |-- tests/
 
-|   `-- check\_\*.py
+|   `-- check_*.py
 
 |
 
-|-- setup\_memory\_db.py
-
-|-- movie\_rental\_db\_description.txt
+|-- setup_memory_db.py
 
 |-- langgraph.json
 
@@ -410,67 +348,43 @@ CineScope-Analytics/
 
 ```
 
+## Getting Started
 
+### Prerequisites
 
-\## Getting Started
+- Python 3.13
 
+- PostgreSQL (developed using PostgreSQL 18)
 
+- An OpenAI API key
 
-\### Prerequisites
+- Git
 
+- Windows Command Prompt or another compatible terminal
 
-
-\- Python 3.13
-
-\- PostgreSQL (developed using PostgreSQL 18)
-
-\- An OpenAI API key
-
-\- Git
-
-\- Windows Command Prompt or another compatible terminal
-
-
-
-\### 1. Clone the Repository
-
-
+### 1. Clone the Repository
 
 ```bash
 
-git clone <your-repository-url>
+git clone https://github.com/pandukatti2000/cinescope-analytics.git
 
-cd <repository-folder>
+cd cinescope-analytics
 
 ```
 
-
-
-Replace the placeholders with your GitHub repository URL and folder name.
-
-
-
-\### 2. Create a Python Virtual Environment
-
-
+### 2. Create a Python Virtual Environment
 
 On Windows:
-
-
 
 ```cmd
 
 python -m venv .venv
 
-.venv\\Scripts\\activate
+.venv\Scripts\activate
 
 ```
 
-
-
 Install dependencies:
-
-
 
 ```cmd
 
@@ -478,71 +392,43 @@ python -m pip install -r requirements.txt
 
 ```
 
-
-
-\### 3. Configure PostgreSQL
-
-
+### 3. Configure PostgreSQL
 
 The application uses two PostgreSQL databases:
-
-
 
 | Database | Purpose |
 
 |---|---|
 
-| `movie\_rental\_db` | Stores movie rental business data |
+| `movie_rental_db` | Stores movie rental business data |
 
-| `cinescope\_memory\_db` | Stores LangGraph conversation checkpoints |
-
-
+| `cinescope_memory_db` | Stores LangGraph conversation checkpoints |
 
 Create both databases using PostgreSQL administration tools or an administrator account.
 
+The analytics database should be accessed through a dedicated read-only role, such as `movie_rental_reader`.
 
-
-The analytics database should be accessed through a dedicated read-only role, such as `movie\_rental\_reader`.
-
-
-
-The conversation memory database requires a separate account, such as `cinescope\_memory\_user`, with permissions to create and maintain LangGraph checkpoint tables.
-
-
+The conversation memory database requires a separate account, such as `cinescope_memory_user`, with permissions to create and maintain LangGraph checkpoint tables.
 
 The repository includes:
 
-
-
 ```text
 
-Data/SQL/sakila\_schema.sql
+Data/SQL/sakila_schema.sql
 
-Data/SQL/sakila\_data.sql
+Data/SQL/sakila_data.sql
 
 ```
 
-
-
 These contain the database schema and data used by the project.
-
-
 
 The SQL files should be reviewed for PostgreSQL compatibility and executed in the correct order: schema first, then data. A clean-database import has not yet been independently verified.
 
-
-
 After importing the dataset, grant the analytics account only the database, schema, and table permissions required for read-only access.
 
-
-
-\### 4. Configure Environment Variables
-
-
+### 4. Configure Environment Variables
 
 Copy the example environment file:
-
-
 
 ```cmd
 
@@ -550,83 +436,57 @@ copy .env.example .env
 
 ```
 
-
-
 Edit `.env` and provide the credentials for both PostgreSQL databases and your OpenAI API key.
-
-
 
 The configuration includes:
 
-
-
 ```dotenv
 
-DB\_HOST=localhost
+DB_HOST=localhost
 
-DB\_PORT=5432
+DB_PORT=5432
 
-DB\_NAME=movie\_rental\_db
+DB_NAME=movie_rental_db
 
-DB\_USER=movie\_rental\_reader
+DB_USER=movie_rental_reader
 
-DB\_PASSWORD=your\_analytics\_database\_password
+DB_PASSWORD=your_analytics_database_password
 
+MEMORY_DB_HOST=localhost
 
+MEMORY_DB_PORT=5432
 
-MEMORY\_DB\_HOST=localhost
+MEMORY_DB_NAME=cinescope_memory_db
 
-MEMORY\_DB\_PORT=5432
+MEMORY_DB_USER=cinescope_memory_user
 
-MEMORY\_DB\_NAME=cinescope\_memory\_db
+MEMORY_DB_PASSWORD=your_memory_database_password
 
-MEMORY\_DB\_USER=cinescope\_memory\_user
+OPENAI_API_KEY=your_openai_api_key_here
 
-MEMORY\_DB\_PASSWORD=your\_memory\_database\_password
+OPENAI_MODEL=gpt-4.1-mini
 
+APP_NAME="Movie Rental AI Analytics"
 
-
-OPENAI\_API\_KEY=your\_openai\_api\_key\_here
-
-OPENAI\_MODEL=gpt-4.1-mini
-
-
-
-APP\_NAME="Movie Rental AI Analytics"
-
-APP\_ENV=development
+APP_ENV=development
 
 ```
 
+**Never commit `.env` or real credentials to GitHub.**
 
-
-\*\*Never commit `.env` or real credentials to GitHub.\*\*
-
-
-
-\### 5. Initialize Conversation Memory
-
-
+### 5. Initialize Conversation Memory
 
 Run this command once after configuring the memory database:
 
-
-
 ```cmd
 
-python setup\_memory\_db.py
+python setup_memory_db.py
 
 ```
 
-
-
 The script initializes the PostgreSQL checkpoint tables required by LangGraph.
 
-
-
 Expected success message:
-
-
 
 ```text
 
@@ -634,15 +494,9 @@ Checkpoint setup: SUCCESS
 
 ```
 
-
-
-\### 6. Start the FastAPI Backend
-
-
+### 6. Start the FastAPI Backend
 
 From the project root, run:
-
-
 
 ```cmd
 
@@ -650,11 +504,7 @@ python -m uvicorn app.api.main:app --reload --host 127.0.0.1 --port 8000 --env-f
 
 ```
 
-
-
 The API will be available at:
-
-
 
 ```text
 
@@ -662,11 +512,7 @@ http://127.0.0.1:8000
 
 ```
 
-
-
 Interactive API documentation:
-
-
 
 ```text
 
@@ -674,11 +520,7 @@ http://127.0.0.1:8000/docs
 
 ```
 
-
-
 Health endpoint:
-
-
 
 ```text
 
@@ -686,27 +528,17 @@ http://127.0.0.1:8000/health
 
 ```
 
-
-
-\### 7. Start the Streamlit Frontend
-
-
+### 7. Start the Streamlit Frontend
 
 Open a second terminal, activate the same virtual environment, and run:
 
-
-
 ```cmd
 
-python -m streamlit run frontend\\streamlit\_app.py
+python -m streamlit run frontend\streamlit_app.py
 
 ```
 
-
-
 Streamlit will display the local application URL, normally:
-
-
 
 ```text
 
@@ -714,65 +546,43 @@ http://localhost:8501
 
 ```
 
-
-
 Open the URL in your browser to use CineScope Analytics.
 
-
-
-\## Example Business Questions
-
-
+## Example Business Questions
 
 Try asking CineScope:
 
+- Show the top 5 movies by total revenue.
 
+- How many customers are registered?
 
-\- Show the top 5 movies by total revenue.
+- Who are the top 10 customers by total spending?
 
-\- How many customers are registered?
+- Show the number of rentals by month.
 
-\- Who are the top 10 customers by total spending?
+- Which movie categories generate the most revenue?
 
-\- Show the number of rentals by month.
+- Which films are rented most frequently?
 
-\- Which movie categories generate the most revenue?
+- How many rentals have not been returned?
 
-\- Which films are rented most frequently?
-
-\- How many rentals have not been returned?
-
-\- What is the total revenue generated by the rental business?
-
-
+- What is the total revenue generated by the rental business?
 
 You can also ask follow-up questions in the same conversation, such as:
-
-
 
 ```text
 
 Question: Show the top 5 movies by total revenue.
 
-
-
 Follow-up: Which of these movies has the highest rental count?
 
 ```
 
-
-
 Follow-up questions use saved conversation context to interpret references to earlier questions.
 
-
-
-\## REST API
-
-
+## REST API
 
 The FastAPI backend provides five endpoints.
-
-
 
 | Method | Endpoint | Description |
 
@@ -786,17 +596,11 @@ The FastAPI backend provides five endpoints.
 
 | GET | `/conversations` | List saved conversation threads |
 
-| GET | `/conversations/{thread\_id}` | Retrieve saved messages for a thread |
+| GET | `/conversations/{thread_id}` | Retrieve saved messages for a thread |
 
+### Analyze a Question
 
-
-\### Analyze a Question
-
-
-
-\*\*Request\*\*
-
-
+**Request**
 
 ```http
 
@@ -806,67 +610,53 @@ Content-Type: application/json
 
 ```
 
-
-
 ```json
 
 {
 
-&#x20; "question": "How many customers are registered?",
+  "question": "How many customers are registered?",
 
-&#x20; "thread\_id": null
+  "thread_id": null
 
 }
 
 ```
 
-
-
-\*\*Example response structure\*\*
-
-
+**Example response structure**
 
 ```json
 
 {
 
-&#x20; "question": "How many customers are registered?",
+  "question": "How many customers are registered?",
 
-&#x20; "answer": "There are 599 registered customers.",
+  "answer": "There are 599 registered customers.",
 
-&#x20; "results": \[
+  "results": [
 
-&#x20;   {
+    {
 
-&#x20;     "total\_customers": 599
+      "total_customers": 599
 
-&#x20;   }
+    }
 
-&#x20; ],
+  ],
 
-&#x20; "row\_count": 1,
+  "row_count": 1,
 
-&#x20; "sql": "SELECT COUNT(\*) AS total\_customers FROM public.customer LIMIT 100",
+  "sql": "SELECT COUNT(*) AS total_customers FROM public.customer LIMIT 100",
 
-&#x20; "thread\_id": "<generated-conversation-uuid>"
+  "thread_id": "<generated-conversation-uuid>"
 
 }
 
 ```
-
-
 
 The exact generated SQL and answer may vary between model calls.
 
+To continue an existing conversation, send the returned `thread_id` in the next `/analyze` request.
 
-
-To continue an existing conversation, send the returned `thread\_id` in the next `/analyze` request.
-
-
-
-\### Dashboard Overview
-
-
+### Dashboard Overview
 
 ```http
 
@@ -874,15 +664,9 @@ GET /overview
 
 ```
 
-
-
 Returns the total revenue, rentals, customers, and films calculated directly from PostgreSQL.
 
-
-
-\### Saved Conversations
-
-
+### Saved Conversations
 
 ```http
 
@@ -890,141 +674,97 @@ GET /conversations
 
 ```
 
-
-
 Returns saved conversation identifiers and titles.
-
-
 
 ```http
 
-GET /conversations/{thread\_id}
+GET /conversations/{thread_id}
 
 ```
-
-
 
 Returns the saved human and AI messages for the requested conversation.
 
-
-
-\## Visualizations and Reporting
-
-
+## Visualizations and Reporting
 
 CineScope uses Pandas and Plotly to visualize suitable query results.
 
-
-
 The visualization component:
 
+- Converts SQL result records into a DataFrame.
 
+- Identifies numeric business metrics.
 
-\- Converts SQL result records into a DataFrame.
+- Selects a category or time-based dimension.
 
-\- Identifies numeric business metrics.
+- Displays horizontal bar charts for comparisons.
 
-\- Selects a category or time-based dimension.
+- Displays line charts for time-based trends.
 
-\- Displays horizontal bar charts for comparisons.
-
-\- Displays line charts for time-based trends.
-
-\- Preserves SQL result ordering for ranked comparisons.
-
-
+- Preserves SQL result ordering for ranked comparisons.
 
 Users can also inspect the underlying results in a table, download CSV files, and expand the generated SQL for transparency.
 
-
-
 Not every query result requires a chart. Single-value metrics and unsuitable result structures are displayed without one.
 
-
-
-\## Testing and Validation
-
-
+## Testing and Validation
 
 The `tests/` directory contains executable Python diagnostic scripts covering:
 
+- OpenAI connectivity
 
+- SQL generation
 
-\- OpenAI connectivity
+- SQL validation
 
-\- SQL generation
+- SQL function restrictions
 
-\- SQL validation
+- Table and schema restrictions
 
-\- SQL function restrictions
+- Query result limits
 
-\- Table and schema restrictions
+- SQL execution
 
-\- Query result limits
+- Read-only PostgreSQL transactions
 
-\- SQL execution
+- Business metric calculations
 
-\- Read-only PostgreSQL transactions
+- Revenue queries
 
-\- Business metric calculations
+- AI answer generation
 
-\- Revenue queries
+- End-to-end analytics
 
-\- AI answer generation
-
-\- End-to-end analytics
-
-\- LangGraph workflow execution
-
-
+- LangGraph workflow execution
 
 For example, from the project root:
 
-
-
 ```cmd
 
-python -m tests.check\_sql\_validator
+python -m tests.check_sql_validator
 
 ```
 
-
-
 ```cmd
 
-python -m tests.check\_sql\_limits
+python -m tests.check_sql_limits
 
 ```
 
-
-
 ```cmd
 
-python -m tests.check\_langgraph\_workflow
+python -m tests.check_langgraph_workflow
 
 ```
-
-
 
 Some tests require a running PostgreSQL database, and AI integration tests require a valid OpenAI API key.
 
-
-
 These are primarily standalone diagnostic scripts rather than a fully automated pytest test suite.
 
-
-
-\## LangGraph Development Tools
-
-
+## LangGraph Development Tools
 
 The repository includes `langgraph.json`, which defines the analytics graph for LangGraph development tooling.
 
-
-
 With a compatible LangGraph CLI installed, the graph can be inspected using the local development server:
-
-
 
 ```cmd
 
@@ -1032,108 +772,78 @@ langgraph dev --port 2024
 
 ```
 
-
-
 This is an optional development workflow and is not required to run the FastAPI and Streamlit application.
-
-
 
 LangSmith can also be configured separately for tracing LangChain and LangGraph model interactions.
 
-
-
-\## Business Logic and Analytical Definitions
-
-
+## Business Logic and Analytical Definitions
 
 The application includes explicit business rules to improve SQL generation accuracy.
 
-
-
 Examples include:
 
+- **Revenue:** Sum of `payment.amount`.
 
+- **Rental count:** Count of `rental.rental_id`.
 
-\- \*\*Revenue:\*\* Sum of `payment.amount`.
+- **Customer spending:** Sum of payment amounts grouped by customer.
 
-\- \*\*Rental count:\*\* Count of `rental.rental\_id`.
+- **Film revenue:** Sum of payments linked through rental, inventory, and film.
 
-\- \*\*Customer spending:\*\* Sum of payment amounts grouped by customer.
+- **Film popularity:** Number of rentals associated with each film.
 
-\- \*\*Film revenue:\*\* Sum of payments linked through rental, inventory, and film.
+- **Unreturned rentals:** Rentals with a NULL `return_date`.
 
-\- \*\*Film popularity:\*\* Number of rentals associated with each film.
+- **Rental trends:** Based on `rental.rental_date`.
 
-\- \*\*Unreturned rentals:\*\* Rentals with a NULL `return\_date`.
-
-\- \*\*Rental trends:\*\* Based on `rental.rental\_date`.
-
-\- \*\*Revenue trends:\*\* Based on `payment.payment\_date`.
-
-
+- **Revenue trends:** Based on `payment.payment_date`.
 
 These rules help the language model generate queries that align with the dataset's business meaning.
 
+## Limitations
 
+- The application is designed for local development, not public production deployment.
 
-\## Limitations
+- An OpenAI API key is required for AI-powered questions.
 
+- Generated answers depend on the quality of the model-generated SQL and underlying data.
 
+- SQL validation is a defense-in-depth measure, not a complete security boundary.
 
-\- The application is designed for local development, not public production deployment.
+- Results are limited to 100 rows per query.
 
-\- An OpenAI API key is required for AI-powered questions.
+- PostgreSQL must be configured and available locally.
 
-\- Generated answers depend on the quality of the model-generated SQL and underlying data.
+- Saved conversations persist in the configured memory database.
 
-\- SQL validation is a defense-in-depth measure, not a complete security boundary.
+- The bundled SQL import process has not yet been independently verified on a clean PostgreSQL installation.
 
-\- Results are limited to 100 rows per query.
-
-\- PostgreSQL must be configured and available locally.
-
-\- Saved conversations persist in the configured memory database.
-
-\- The bundled SQL import process has not yet been independently verified on a clean PostgreSQL installation.
-
-
-
-\## Project Purpose
-
-
+## Project Purpose
 
 CineScope Analytics was developed as a portfolio project to demonstrate practical skills in:
 
+- Python backend development
 
+- REST API design
 
-\- Python backend development
+- PostgreSQL and SQL analytics
 
-\- REST API design
+- LLM application development
 
-\- PostgreSQL and SQL analytics
+- LangChain and LangGraph workflows
 
-\- LLM application development
+- Natural-language-to-SQL systems
 
-\- LangChain and LangGraph workflows
+- Database query validation
 
-\- Natural-language-to-SQL systems
+- Stateful AI conversations
 
-\- Database query validation
+- Interactive data visualization
 
-\- Stateful AI conversations
-
-\- Interactive data visualization
-
-\- End-to-end application integration
-
-
+- End-to-end application integration
 
 The project demonstrates how AI can provide a natural-language interface to structured business data while retaining visibility into the generated SQL and supporting results.
 
+---
 
-
-\---
-
-
-
-\*\*CineScope Analytics — Ask questions. Explore data. Understand your business.\*\*
+**CineScope Analytics — Ask questions. Explore data. Understand your business.**
