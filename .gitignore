@@ -1,0 +1,64 @@
+# Existing project exclusions
+Video/
+Solutions/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Testing and tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Application logs
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# LangGraph local development state
+.langgraph_api/
+
+# Duplicate source datasets (SQL scripts retained)
+Data/CSV/
+
+
+# Older analysis and learning artifacts
+learning_powerbi.pbix
+movie_rental_eda_results.xlsx
+movie_rental_project.ipynb
+
+# Standalone database preparation scripts
+import_csvs.py
+movie_rental_db.py
+
+# Backup files
+frontend/streamlit_app_backup.py
+
+
+
+# Local project inspection files
+cinescope_project_report.txt
+inspect_project.py
+
+# Local database reference document
+movie_rental_db_description.txt

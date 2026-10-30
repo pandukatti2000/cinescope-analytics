@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "movie_rental_analytics": "./app/agents/graph.py:analytics_graph"
+  },
+  "env": ".env"
+}
